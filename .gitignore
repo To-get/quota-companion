@@ -1,0 +1,19 @@
+.build/
+.swiftpm/
+dist/
+.DS_Store
+*.app/
+*.dmg
+*.zip
+*.log
+
+# Local credentials and agent settings
+.env
+.env.*
+*.p12
+*.p8
+*.pem
+*.key
+.codex/
+.agents/
+.aws/
