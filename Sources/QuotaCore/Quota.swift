@@ -5,6 +5,8 @@ public struct QuotaWindow: Equatable, Identifiable {
     public let title: String
     public let remaining: Double
     public let resetsAt: Date?
+    /// Server-reported window length; used to recognise the 5-hour and weekly windows.
+    public let durationMinutes: Int?
 
     public var percentage: String { String(format: "%.0f%%", remaining) }
 
@@ -56,7 +58,8 @@ public struct QuotaSnapshot: Equatable {
                     return seconds.isFinite && seconds > 0 ? Date(timeIntervalSince1970: seconds) : nil
                 }
                 windows.append(QuotaWindow(id: "\(key).\(slot)", title: prefix + title,
-                                           remaining: min(100, max(0, 100 - used.doubleValue)), resetsAt: reset))
+                                           remaining: min(100, max(0, 100 - used.doubleValue)),
+                                           resetsAt: reset, durationMinutes: duration))
             }
         }
         guard !windows.isEmpty else { throw QuotaError.noQuota }

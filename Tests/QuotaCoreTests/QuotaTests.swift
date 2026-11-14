@@ -16,6 +16,7 @@ struct QuotaTests {
             "primary": window(39), "secondary": window(22, minutes: 10080), "planType": "plus"
         ]]])
         #expect(snapshot.windows.map(\.remaining) == [61, 78])
+        #expect(snapshot.windows.map(\.durationMinutes) == [300, 10_080])
         #expect(snapshot.remaining == 61)
         #expect(snapshot.plan == "plus")
     }
